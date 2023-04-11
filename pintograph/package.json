@@ -1,0 +1,33 @@
+{
+  "name": "pintograph",
+  "version": "0.2.0",
+  "description": "Pintograph simulator",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "Michał Dudak",
+    "email": "michal@dudak.me"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaldudak/pintograph.git"
+  },
+  "homepage": "https://github.com/michaldudak/pintograph#readme",
+  "scripts": {
+    "watch": "webpack --watch -d",
+    "build": "webpack --mode=production"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-pkg-json-webpack-plugin": "^0.0.40",
+    "copy-webpack-plugin": "^11.0.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.3",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1"
+  }
+}

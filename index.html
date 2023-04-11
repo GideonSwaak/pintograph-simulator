@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pintograph 2.0</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="shortcut icon" sizes="196x196" href="static/android_icon.png">
+    <link rel="stylesheet" href="scss/style.css">
+    <script src="js/index.js" type="module"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#303030 ">
+    <meta name="msapplication-TileColor" content="#303030">
+    <meta name="theme-color" content="#303030">
+</head>
+
+<body>
+    <nav>
+        <!-- <div class="new-file"></div> -->
+        <!-- <div class="save-file"></div> -->
+        <!-- <div class="open-file"></div> -->
+    </nav>
+    <div id="sidebar">
+        <div class="title-bar">
+            <!-- <span>Unnamed project</span> -->
+        </div>
+        <div id="action-buttons">
+            <button id="add-pintograph-button">Add</button>
+            <button id="settings-button">Settings</button>
+            <button id="render-button">Render</button>
+        </div>
+        <div class="elements">
+            <rotary-pintograph></rotary-pintograph>
+        </div>
+    </div>
+    <main>
+        <pinto-canvas></pinto-canvas>
+    </main>
+    <dialog is="new-pinto-dialog">
+        <div class="title-bar"><button class="close-button"></button></div>
+        <div class="content">
+        </div>
+    </dialog>
+    <dialog is="settings-dialog">
+        <div class="title-bar"><button class="close-button"></button></div>
+        <div class="content">
+            <div class="settings-row"><label for="hide-tools">Hide tools</label><input type="checkbox"
+                    name="hide-tools"></div>
+            <div class="settings-row"><label for="canvas-color">Background color</label><input type="color"
+                    name="canvas-color" value="#FFFFFF"></div>
+        </div>
+    </dialog>
+    <dialog is="error-dialog">
+        <div class="title-bar"><button class="close-button"></button></div>
+        <p class="error-message"></p>
+        <button class="ok-button">OK</button>
+    </dialog>
+</body>
+
+</html>
