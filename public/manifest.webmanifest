@@ -1,14 +1,20 @@
 {
-    "background_color": "#2c3e50",
-    "description": "Fuel price comparison app",
+    "description": "Pintograph simulator",
     "display": "standalone",
     "icons": [
       {
-        "src": "assets/android_icon.png",
-        "sizes": "192x192",
-        "type": "image/png"
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      },
+      {
+          "src": "/android-chrome-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png"
       }
-    ],
+  ],
+    "theme_color": "#303030",
+    "background_color": "#303030",
     "name": "Pintograph",
     "short_name": "Pintograph",
     "start_url": "/index.html"

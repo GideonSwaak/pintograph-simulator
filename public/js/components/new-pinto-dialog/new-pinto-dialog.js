@@ -1,4 +1,3 @@
-import * as Pintograph from "../../libraries/pintograph.js";
 import { SimplePintograph } from "../../drawers/simple-pintograph.js";
 import { ProperPintograph } from "../../drawers/proper-pintograph.js";
 import { LissajousCurves } from "../../drawers/lissajous-curves.js";
