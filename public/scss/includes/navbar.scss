@@ -1,0 +1,27 @@
+// TODO: Navbar currently disabled; no back-end implemented yet
+.open-file {
+    background: url("../assets/open.svg");
+}
+
+.new-file {
+    background: url("../assets/new.svg");
+}
+
+.save-file {
+    background: url("../assets/save.svg");
+}
+
+.open-file, .new-file, .save-file {
+    height: 1.8rem;
+    width: 1.8rem;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-left: 1rem;
+}

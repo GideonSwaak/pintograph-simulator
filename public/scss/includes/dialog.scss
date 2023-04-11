@@ -1,0 +1,74 @@
+dialog {
+    width: 500px;
+    height: 500px;
+    background: $background-color;
+    color: white;
+}
+
+dialog[is='new-pinto-dialog'] .content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    box-sizing:border-box;
+
+}
+dialog[is='new-pinto-dialog'] .element {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+dialog[is='new-pinto-dialog'] .element pinto-canvas::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 150px;
+    text-align: center;
+    width: 150px;
+    height: fit-content;
+    background: $dialog-color;
+    color: white;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+dialog[is='settings-dialog'] {
+    .settings-row {
+        display: flex;
+        justify-content: end;
+    }
+}
+dialog .title-bar {
+    height: 2rem;
+}
+
+dialog[is="error-dialog"] {
+    height: 6rem;
+    position: relative;
+    .title-bar {
+        height: 0;
+    }
+    .ok-button {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 10px;
+    }
+}
+
+dialog .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    background: url("../assets/close.svg");
+    height: 1.8rem;
+    width: 1.8rem;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+}
