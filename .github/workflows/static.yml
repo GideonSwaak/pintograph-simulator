@@ -39,6 +39,11 @@ jobs:
         with:
           node-version: 18.x
           
+      - name: Build SCSS
+        run: |
+          npm install
+          npm run sass
+          
       - name: Build
         run: |
           cd public/pintograph
