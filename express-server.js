@@ -1,18 +1,13 @@
 import express from "express";
-import cors from "cors";
 import { fileURLToPath } from "url";
 import path from "path";
 import sass from "sass";
 
-export function runServer(port, filePath, useCors = false) {
+export function runServer(port, filePath) {
     filePath = path.dirname(filePath);
     filePath = fileURLToPath(filePath);
     const app = express();
 
-    if (useCors) {
-        app.use(cors());
-    }
-    
     app.get(/\.css$/, (req, res) => {
         console.log(req.path);
         const _filePath = path.join(filePath, "/public/", req.path.replaceAll(".css", ".scss"));
