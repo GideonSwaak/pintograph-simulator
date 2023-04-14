@@ -9,7 +9,7 @@ class ErrorDialog extends HTMLDialogElement {
     errorHandler(event) {
         const filename = event.filename.split("/").pop();
         if (filename !== "pintograph.js") return;
-        document.querySelector("main pinto-canvas").scene?.reset();
+        document.querySelector("main pinto-canvas").replace();
         if (this.open) return;
         this.showModal();
         this.querySelector("p").innerHTML = `${event.message}`;

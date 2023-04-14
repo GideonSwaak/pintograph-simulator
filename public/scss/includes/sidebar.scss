@@ -49,8 +49,13 @@ input[type="checkbox"]:checked {
 input[type="color"] {
     background-color: $dialog-color;
     padding: 0;
+    width: 5rem;
+    box-sizing: content-box;
 }
 
+input[type="color"] {
+    position: relative;
+}
 
 #sidebar::-webkit-scrollbar {
     width: 16px
@@ -75,7 +80,7 @@ input[type="color"] {
     border: none
 }
 
-mount-point, simple-wheel, arm-input, oscillator-input, pen-settings {
+mount-point, simple-wheel, oscillator-input {
     display: block;
     width: 100%;
     padding-top: 2px;
@@ -84,18 +89,14 @@ mount-point, simple-wheel, arm-input, oscillator-input, pen-settings {
     > span {
         font-size: 0.85rem;
     }
-    > input[type='number'] {
-        width: 4rem;
-    }
+
 }
 
-simple-wheel {
-    display: grid;
-    grid-template-columns: auto auto;
-    width: 50%;
+input[type='number'] {
+    width: 4rem;
 }
 
-arm-input, oscillator-input, pen-settings {
+oscillator-input {
     display: grid;
     grid-template-columns: auto auto auto auto;
     width: 100%;
@@ -151,3 +152,5 @@ button.delete {
     display: flex;
     justify-content: space-between;
 }
+
+@import "./input-elements/input-elements";

@@ -1,0 +1,7 @@
+pen-settings {
+    @include input-elements;
+    > label, > input {
+        justify-self: start;
+        align-self: center;
+    }
+}

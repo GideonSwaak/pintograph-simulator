@@ -22,6 +22,20 @@
 nav {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 5px;
     padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+nav account-status a.login {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav account-status a.logout {
+    color: #fff;
+    text-decoration: none;
+    vertical-align: top;  
+    font-size: 0.85rem; 
 }

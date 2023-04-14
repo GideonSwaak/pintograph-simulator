@@ -1,0 +1,42 @@
+mount-point {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 1fr;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    > span:first-of-type {
+        font-size: 0.85rem;
+        align-self: center;
+    }
+    > label {
+        justify-self: end;
+    }
+    > span:not(:first-of-type) {
+        position: relative;
+        &::before {
+            content: "X";
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+            left: 0.5rem;
+            font-size: 1rem;
+            bottom: 0;
+            margin: auto;
+        }
+    }
+    > span:nth-of-type(2) {
+        // grid-column: 2;
+    }
+    > span:nth-of-type(3) {
+        // grid-column: 4;
+        &::before {
+            content: "Y";
+        }
+    }
+    .mount-point-picker {
+        width: 4rem;
+        padding: 0.5rem;
+        box-sizing: content-box;
+    }
+}

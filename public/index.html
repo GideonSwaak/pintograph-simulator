@@ -20,13 +20,18 @@
 
 <body>
     <nav>
-        <!-- <div class="new-file"></div> -->
-        <!-- <div class="save-file"></div> -->
-        <!-- <div class="open-file"></div> -->
+        <div>
+            <div class="new-file"></div>
+            <div class="save-file"></div>
+            <div class="open-file"></div>
+        </div>
+        <div>
+            <account-status></account-status>
+        </div>
     </nav>
     <div id="sidebar">
         <div class="title-bar">
-            <!-- <span>Unnamed project</span> -->
+            <span class="project-title" contenteditable>Untitled project</span>
         </div>
         <div id="action-buttons">
             <button id="add-pintograph-button">Add</button>
@@ -34,7 +39,7 @@
             <button id="render-button">Render</button>
         </div>
         <div class="elements">
-            <rotary-pintograph></rotary-pintograph>
+            <simple-pintograph></simple-pintograph>
         </div>
     </div>
     <main>
@@ -58,6 +63,12 @@
         <div class="title-bar"><button class="close-button"></button></div>
         <p class="error-message"></p>
         <button class="ok-button">OK</button>
+    </dialog>
+    <dialog is="open-file-dialog">
+        <div class="title-bar"><button class="close-button"></button></div>
+        <div class="content">
+            <input type="file" id="open-file-input" accept=".pinto">
+        </div>
     </dialog>
 </body>
 

@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import "./includes/mixin.scss";
 @import "./includes/variables.scss";
 @import "./includes/sidebar.scss";
 @import "./includes/dialog.scss";
-// @import "./includes/navbar.scss";
+@import "./includes/navbar.scss";
 
 body {
     margin: 0;

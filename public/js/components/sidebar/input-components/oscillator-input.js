@@ -1,44 +1,30 @@
 class OscillatorInput extends HTMLElement {
     horizontal;
-    length;
-    lengthEl;
-    angle;
-    angleEl;
-    speed;
-    speedEl;
+    elements;
     
     connectedCallback() {
         this.horizontal = this.hasAttribute("h-oscillator");
-        this.length = this.dataset.length;
-        this.angle = this.dataset.angle;
-        this.speed = this.dataset.speed;
-
         this.innerHTML = `
         <span>${this.horizontal ? "Horizontal" : "Vertical"} oscillator</span>
         <label for="length">Length</label>
-        <input type="number" name="length" class="length" value="${this.length}">
+        <input type="number" name="length" class="length" value="${this.dataset.length}">
         <label for="angle">Angle</label>
-        <input type="number" name="angle" class="angle" value="${this.angle}">
+        <input type="number" name="angle" class="angle" value="${this.dataset.angle}">
         <label for="speed">Speed</label>
-        <input type="number" name="speed" class="speed" value="${this.speed}">
+        <input type="number" name="speed" class="speed" value="${this.dataset.speed}">
         `;
-        this.lengthEl = this.querySelector(".length");
-        this.angleEl = this.querySelector(".angle");
-        this.speedEl = this.querySelector(".speed");
-        this.setupListeners();
-    }
-
-    setupListeners() {
-        this.lengthEl.addEventListener("change", e => this.length = parseInt(e.target.value));
-        this.angleEl.addEventListener("change", e => this.angle = parseFloat(e.target.value));
-        this.speedEl.addEventListener("change", e => this.speed = parseFloat(e.target.value));
+        this.elements = {
+            length: this.querySelector(".length"),
+            angle: this.querySelector(".angle"),
+            speed: this.querySelector(".speed"),
+        }
     }
 
     getData() {
         return {
-            length: this.length,
-            angle: this.angle,
-            speed: this.speed
+            length: this.elements.length.valueAsNumber,
+            angle: this.elements.angle.valueAsNumber,
+            speed: this.elements.speed.valueAsNumber,
         };
     }
 

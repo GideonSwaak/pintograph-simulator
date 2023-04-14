@@ -11,10 +11,10 @@ self.addEventListener('install', function(event) {
     );
 });
 
-self.addEventListener('fetch', (e) => {
-    fetch(e.request).then(response => e.respondWith(response));
-    // e.respondWith(
-        // fetch(e.request)
-    //   caches.match(e.request).then((response) => /*response ||*/ fetch(e.request)),
-    // );
-  });
+// self.addEventListener('fetch', (e) => {
+//     fetch(e.request).then(response => e.respondWith(response));
+//     // e.respondWith(
+//         // fetch(e.request)
+//     //   caches.match(e.request).then((response) => /*response ||*/ fetch(e.request)),
+//     // );
+//   });

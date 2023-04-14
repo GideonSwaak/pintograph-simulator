@@ -1,0 +1,13 @@
+@mixin input-elements {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 25%);
+    grid-auto-rows: 1fr;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+@import "./arm-input.scss";
+@import "./pen-settings.scss";
+@import "./mount-point.scss";
+@import "./simple-wheel.scss";
+@import "./oscillator-input.scss";
