@@ -39,10 +39,10 @@ export class RotaryPintograph {
 
     build(scene) {
         let center = new Pintograph.StaticMountPoint(this.mountPoint);
-        let baseWheel1 = new Pintograph.Wheel(center, this.baseWheel1.radius, this.baseWheel1.startAngle, this.baseWheel1.speed);
-        let baseWheel2 = new Pintograph.Wheel(center, this.baseWheel2.radius, this.baseWheel2.startAngle, this.baseWheel2.speed);
-        let wheel1 = new Pintograph.Wheel(baseWheel1.mountPoint, this.wheel1.radius, this.wheel1.startAngle, this.wheel1.speed);
-        let wheel2 = new Pintograph.Wheel(baseWheel2.mountPoint, this.wheel2.radius, this.wheel2.startAngle, this.wheel2.speed);
+        let baseWheel1 = new Pintograph.Wheel(center, this.baseWheel1.radius, this.baseWheel1.startAngle, this.baseWheel1.speed, this.penSettings.toolColor);
+        let baseWheel2 = new Pintograph.Wheel(center, this.baseWheel2.radius, this.baseWheel2.startAngle, this.baseWheel2.speed, this.penSettings.toolColor);
+        let wheel1 = new Pintograph.Wheel(baseWheel1.mountPoint, this.wheel1.radius, this.wheel1.startAngle, this.wheel1.speed, this.penSettings.toolColor);
+        let wheel2 = new Pintograph.Wheel(baseWheel2.mountPoint, this.wheel2.radius, this.wheel2.startAngle, this.wheel2.speed, this.penSettings.toolColor);
     
         let arm = new Pintograph.VArm({
             mountedAt1: wheel1.mountPoint,
@@ -50,7 +50,7 @@ export class RotaryPintograph {
             length1: this.armLength1,
             length2: this.armLength2,
             flip: this.flip
-        });
+        }, this.penSettings.toolColor);
     
         let pen = new Pintograph.Pen(arm.mountPoint, this.penSettings.color, {
             lineWidth: this.penSettings.size,

@@ -18,7 +18,7 @@ export class ProperPintographElement extends HTMLElement {
         <simple-wheel data-point="2" data-radius="${this.data.subwheel2.radius}" data-start-angle="${this.data.subwheel2.startAngle}" data-speed="${this.data.subwheel2.speed}" subwheel></simple-wheel>
         <arm-input data-length1="${this.data.xArm.length1}" data-length2="${this.data.xArm.length2}" data-extension-length1="${this.data.xArm.extensionLength1}" data-extension-length2="${this.data.xArm.extensionLength2}" data-flip="${this.data.xArm.flip}" x-arm></arm-input>
         <arm-input data-length1="${this.data.vArm.length1}" data-length2="${this.data.vArm.length2}" data-flip="${this.data.vArm.flip}" v-arm></arm-input>
-        <pen-settings data-size="${this.data.penSettings.size}" data-color="${this.data.penSettings.color}" data-shadow-blur="${this.data.penSettings.shadowBlur}" data-shadow-color="${this.data.penSettings.shadowColor}" data-rainbow-shadow-color="${this.data.penSettings.rainbowShadowColor}" data-rainbow-color="${this.data.penSettings.rainbowColor}"></pen-settings>
+        <pen-settings data-size="${this.data.penSettings.size}" data-color="${this.data.penSettings.color}" data-shadow-blur="${this.data.penSettings.shadowBlur}" data-shadow-color="${this.data.penSettings.shadowColor}" data-rainbow-shadow-color="${this.data.penSettings.rainbowShadowColor}" data-rainbow-color="${this.data.penSettings.rainbowColor}" data-tool-color="${this.data.penSettings.toolColor}"></pen-settings>
         `;
         this.elements = {
             deleteButton: this.querySelector("button.delete"),
