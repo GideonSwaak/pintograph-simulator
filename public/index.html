@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#303030">
+    <meta name="theme-color" content="#303030">
     <title>Pintograph 2.0</title>
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="scss/style.css">
-    <script src="js/index.js" type="module"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#303030 ">
-    <meta name="msapplication-TileColor" content="#303030">
-    <meta name="theme-color" content="#303030">
+    <script src="js/index.js" type="module"></script>
 </head>
-
 <body>
+    <!-- Navbar-->
     <nav>
         <div>
-            <div class="new-file"></div>
-            <div class="save-file"></div>
-            <div class="open-file"></div>
+            <workspace-manager>
+                <div class="new-file"></div>
+                <div class="save-file"></div>
+                <div class="open-file"></div>
+            </workspace-manager>
         </div>
         <div>
             <account-status></account-status>
         </div>
     </nav>
+
+    <!-- Sidebar -->
     <div id="sidebar">
         <div class="title-bar">
             <span class="project-title" contenteditable>Untitled project</span>
@@ -39,17 +42,20 @@
             <button id="render-button">Render</button>
         </div>
         <div class="elements">
-            <simple-pintograph></simple-pintograph>
         </div>
     </div>
+
     <main>
         <pinto-canvas></pinto-canvas>
     </main>
+
+    <!-- Dialogs -->
     <dialog is="new-pinto-dialog">
         <div class="title-bar"><button class="close-button"></button></div>
         <div class="content">
         </div>
     </dialog>
+
     <dialog is="settings-dialog">
         <div class="title-bar"><button class="close-button"></button></div>
         <div class="content">
@@ -59,17 +65,20 @@
                     name="canvas-color" value="#FFFFFF"></div>
         </div>
     </dialog>
+
     <dialog is="error-dialog">
         <div class="title-bar"><button class="close-button"></button></div>
         <p class="error-message"></p>
         <button class="ok-button">OK</button>
     </dialog>
-    <dialog is="open-file-dialog">
+
+    <dialog is="open-workspace-dialog">
         <div class="title-bar"><button class="close-button"></button></div>
         <div class="content">
-            <input type="file" id="open-file-input" accept=".pinto">
+            <div class="workspace-list">
+            </div>
         </div>
     </dialog>
-</body>
 
+</body>
 </html>

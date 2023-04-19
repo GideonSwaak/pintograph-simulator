@@ -1,8 +1,8 @@
-import { SimplePintograph, defaults } from "../../drawers/pintographs/simple-pintograph.js";
-import "./input-components/mount-point.js";
-import "./input-components/simple-wheel.js";
-import "./input-components/arm-input.js";
-import "./input-components/pen-settings.js";
+import { SimplePintograph, defaults } from "../../../drawers/pintographs/simple-pintograph.js";
+import "../input-components/mount-point.js";
+import "../input-components/simple-wheel.js";
+import "../input-components/arm-input.js";
+import "../input-components/pen-settings.js";
 
 
 export class SimplePintographElement extends HTMLElement {
@@ -51,31 +51,6 @@ export class SimplePintographElement extends HTMLElement {
             type: "simple-pintograph"
         }
     }
-
-    // getData() {
-    //     const mountPoint1 = this.elements.mountPoint1.getData();
-    //     const mountPoint2 = this.elements.mountPoint2.getData();
-    //     const wheel1 = this.elements.wheel1.getData();
-    //     const wheel2 = this.elements.wheel2.getData();
-    //     const armLength1 = this.elements.armLength1.value;
-    //     const armLength2 = this.elements.armLength2.value;
-    //     const flip = this.elements.flip.checked;
-    //     return {
-    //         mountPoint1,
-    //         mountPoint2,
-    //         wheel1,
-    //         wheel2,
-    //         armLength1,
-    //         armLength2,
-    //         flip
-    //     };
-    // }
-
-    // static loadFromData(data) {
-    //     const element = document.createElement("simple-pintograph");
-    //     element.data = data;
-    //     return element;
-    // }
     
 }
 

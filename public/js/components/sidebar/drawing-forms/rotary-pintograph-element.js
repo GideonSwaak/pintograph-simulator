@@ -1,7 +1,7 @@
-import { RotaryPintograph, defaults } from "../../drawers/pintographs/rotary-pintograph.js";
-import "./input-components/mount-point.js";
-import "./input-components/simple-wheel.js";
-import "./input-components/arm-input.js";
+import { RotaryPintograph, defaults } from "../../../drawers/pintographs/rotary-pintograph.js";
+import "../input-components/mount-point.js";
+import "../input-components/simple-wheel.js";
+import "../input-components/arm-input.js";
 
 export class RotaryPintographElement extends HTMLElement {
     data = defaults();

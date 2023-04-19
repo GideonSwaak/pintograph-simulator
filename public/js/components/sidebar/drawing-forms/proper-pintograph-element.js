@@ -1,7 +1,7 @@
-import { ProperPintograph, defaults } from "../../drawers/pintographs/proper-pintograph.js";
-import "./input-components/mount-point.js";
-import "./input-components/simple-wheel.js";
-import "./input-components/arm-input.js";
+import { ProperPintograph, defaults } from "../../../drawers/pintographs/proper-pintograph.js";
+import "../input-components/mount-point.js";
+import "../input-components/simple-wheel.js";
+import "../input-components/arm-input.js";
 
 export class ProperPintographElement extends HTMLElement {
     data = defaults();

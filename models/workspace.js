@@ -5,8 +5,8 @@ const workspaceSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    description: {
-        type: String,
+    data: {
+        type: Object,
         required: true,
     },
     owner: {
@@ -24,3 +24,5 @@ const workspaceSchema = new mongoose.Schema({
 {
     timestamps: true,
 });
+
+export default mongoose.model("Workspace", workspaceSchema);

@@ -1,7 +1,7 @@
-import { LissajousCurves, defaults } from "../../drawers/pintographs/lissajous-curves.js";
+import { LissajousCurves, defaults } from "../../../drawers/pintographs/lissajous-curves.js";
 
-import "./input-components/mount-point.js";
-import "./input-components/oscillator-input.js";
+import "../input-components/mount-point.js";
+import "../input-components/oscillator-input.js";
 
 export class LissajousCurvesElement extends HTMLElement {
     data = defaults();

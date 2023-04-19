@@ -17,6 +17,18 @@ body {
     width: 100vw;
 }
 
+@media screen and (max-width: 1536px) {
+    body {
+        grid-template-columns: 28vw 72vw;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    body {
+        grid-template-columns: 40vw 60vw;
+    }
+}
+
 nav {
     grid-column: span 2;
     background: $menu-color;
