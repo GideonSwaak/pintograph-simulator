@@ -9,7 +9,7 @@ class MountPoint extends HTMLElement {
         <span>Mount point ${this.dataset.point || ""}</span>
         <span><input type="number" name="x" class="x" value="${this.dataset.x}"></span>
         <span><input type="number" name="y" class="y" value="${this.dataset.y}"></span>
-        <button class="mount-point-picker">Kiezen</button>
+        <button class="mount-point-picker">Pick</button>
         `;
         this.elements = {
             x: this.querySelector(".x"),

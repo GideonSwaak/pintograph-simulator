@@ -8,7 +8,7 @@ export const defaults = () => ({
 });
 
 export class LissajousCurves {
-
+    
     constructor({ mountPoint, hOscillator, vOscillator, penSettings } = defaults()) {
         if (mountPoint) this.mountPoint = mountPoint;
         if (hOscillator) this.hOscillator = hOscillator;
@@ -25,8 +25,8 @@ export class LissajousCurves {
 
     build(scene) {
         let mountPoint = new Pintograph.StaticMountPoint(this.mountPoint);
-        let hOscillator = new Pintograph.Oscillator(mountPoint, this.hOscillator.length, this.hOscillator.angle, this.hOscillator.speed);
-        let vOscillator = new Pintograph.Oscillator(hOscillator.mountPoint, this.vOscillator.length, this.vOscillator.angle, this.vOscillator.speed);
+        let hOscillator = new Pintograph.Oscillator(mountPoint, this.hOscillator.length, this.hOscillator.angle, this.hOscillator.speed, this.penSettings.toolColor);
+        let vOscillator = new Pintograph.Oscillator(hOscillator.mountPoint, this.vOscillator.length, this.vOscillator.angle, this.vOscillator.speed, this.penSettings.toolColor);
         let pen = new Pintograph.Pen(vOscillator.mountPoint, this.penSettings.color, {
             lineWidth: this.penSettings.size,
             shadowBlur: this.penSettings.shadowBlur,

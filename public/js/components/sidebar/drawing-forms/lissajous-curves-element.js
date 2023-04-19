@@ -14,7 +14,7 @@ export class LissajousCurvesElement extends HTMLElement {
         <mount-point data-x="${this.data.mountPoint.x}" data-y="${this.data.mountPoint.y}"></mount-point>
         <oscillator-input data-length="${this.data.hOscillator.length}" data-angle="${this.data.hOscillator.angle}" data-speed="${this.data.hOscillator.speed}" h-oscillator></oscillator-input>
         <oscillator-input data-length="${this.data.vOscillator.length}" data-angle="${this.data.vOscillator.angle}" data-speed="${this.data.vOscillator.speed}" v-oscillator></oscillator-input>
-        <pen-settings data-size="${this.data.penSettings.size}" data-color="${this.data.penSettings.color}" data-shadow-blur="${this.data.penSettings.shadowBlur}" data-shadow-color="${this.data.penSettings.shadowColor}" data-rainbow-shadow-color="${this.data.penSettings.rainbowShadowColor}" data-rainbow-color="${this.data.penSettings.rainbowColor}"></pen-settings>
+        <pen-settings data-size="${this.data.penSettings.size}" data-color="${this.data.penSettings.color}" data-shadow-blur="${this.data.penSettings.shadowBlur}" data-shadow-color="${this.data.penSettings.shadowColor}" data-rainbow-shadow-color="${this.data.penSettings.rainbowShadowColor}" data-rainbow-color="${this.data.penSettings.rainbowColor}" data-tool-color="${this.data.penSettings.toolColor}"></pen-settings>
         `;
 
         this.elements = {

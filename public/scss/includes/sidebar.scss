@@ -83,8 +83,6 @@ input[type="color"] {
 mount-point, simple-wheel, oscillator-input {
     display: block;
     width: 100%;
-    padding-top: 2px;
-    padding-bottom: 2px;
     box-sizing: border-box;
     > span {
         font-size: 0.85rem;
@@ -122,11 +120,17 @@ simple-pintograph, proper-pintograph, lissajous-curves, rotary-pintograph {
     background: $background-color;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    padding: 6px;
+    padding-top: 0px;
+    > * {
+        padding: 6px;
+        padding-top: 12px;
+    }
     > .title-bar {
         width: 100%;
         display: block;
-
+        padding-top: 6px;
+        font-size: 1.2rem;
+        cursor: default;
     }
 }
 

@@ -15,7 +15,7 @@ export const defaults = () => ({
 
 export class ProperPintograph {
 
-    constructor({ mountPoint1, mountPoint2, wheel1, subwheel1, wheel2, subwheel2, xArm, vArm, flip, penSettings} = defaults()) {
+    constructor({ mountPoint1, mountPoint2, wheel1, subwheel1, wheel2, subwheel2, xArm, vArm, flip, penSettings } = defaults()) {
         this.mountPoint1 = mountPoint1;
         this.mountPoint2 = mountPoint2;
         this.wheel1 = wheel1;
@@ -48,22 +48,22 @@ export class ProperPintograph {
     build(scene) {
         let mountPoint1 = new Pintograph.StaticMountPoint(this.mountPoint1);
         let mountPoint2 = new Pintograph.StaticMountPoint(this.mountPoint2);
-        let wheel1 = new Pintograph.Wheel(mountPoint1, this.wheel1.radius, this.wheel1.startAngle, this.wheel1.speed);
-        let wheel2 = new Pintograph.Wheel(mountPoint2, this.wheel2.radius, this.wheel2.startAngle, this.wheel2.speed);
-        let subwheel1 = new Pintograph.Wheel(wheel1.mountPoint, this.subwheel1.radius, this.subwheel1.startAngle, this.subwheel1.speed);
-        let subwheel2 = new Pintograph.Wheel(wheel2.mountPoint, this.subwheel2.radius, this.subwheel2.startAngle, this.subwheel2.speed);
+        let wheel1 = new Pintograph.Wheel(mountPoint1, this.wheel1.radius, this.wheel1.startAngle, this.wheel1.speed, this.penSettings.toolColor);
+        let wheel2 = new Pintograph.Wheel(mountPoint2, this.wheel2.radius, this.wheel2.startAngle, this.wheel2.speed, this.penSettings.toolColor);
+        let subwheel1 = new Pintograph.Wheel(wheel1.mountPoint, this.subwheel1.radius, this.subwheel1.startAngle, this.subwheel1.speed, this.penSettings.toolColor);
+        let subwheel2 = new Pintograph.Wheel(wheel2.mountPoint, this.subwheel2.radius, this.subwheel2.startAngle, this.subwheel2.speed, this.penSettings.toolColor);
         
         let xArm = new Pintograph.XArm({
             mountedAt1: subwheel1.mountPoint,
             mountedAt2: subwheel2.mountPoint,
             ...this.xArm
-        });
+        }, this.penSettings.toolColor);
 
         let arm = new Pintograph.VArm({
             mountedAt1: xArm.mountPoint1,
             mountedAt2: xArm.mountPoint2,
             ...this.vArm
-        });
+        }, this.penSettings.toolColor);
         
         let pen = new Pintograph.Pen(arm.mountPoint, this.penSettings.color, {
             lineWidth: this.penSettings.size,
