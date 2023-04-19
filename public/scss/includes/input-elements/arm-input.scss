@@ -1,0 +1,18 @@
+arm-input {
+    @include input-elements;
+    grid-auto-rows: auto 1fr;
+    > span {
+        grid-column: span 4;
+        font-size: 0.85rem;
+    }
+    > label.right {
+        grid-column: 3;
+        text-align: right;
+    }
+    > input.right {
+        grid-column: 4;
+        text-align: left;
+        margin-left: 5px;
+        margin-right: auto;
+    }
+}

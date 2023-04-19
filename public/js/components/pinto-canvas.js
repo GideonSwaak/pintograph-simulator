@@ -4,6 +4,8 @@ class PintoCanvas extends HTMLElement {
     previewCanvas;
     toolCanvas;
     scene;
+    customDrawers = [];
+    paused = true;
     connectedCallback() {
         let height = this.getAttribute("height") || 0.9 * this.clientHeight;
         let width = this.getAttribute("width") || 0.9 * this.clientWidth;
@@ -32,16 +34,39 @@ class PintoCanvas extends HTMLElement {
         });
     }
 
-    initiateScene(func) {
+    setPintographScene(func) {
         const scene = new Scene(this.previewCanvas.getContext("2d"), this.toolCanvas.getContext("2d"));
         func(scene);
         this.scene = scene;
-        setTimeout(() => scene.run());
     }
 
-    killScene() {
+    addCustomDrawer(customDrawer) {
+        customDrawer.setContext(this.previewCanvas.getContext("2d"));
+        this.customDrawers.push(customDrawer);
+    }
+
+    customLoop() {
+        if (this.paused) return;
+        this.customDrawers.forEach(drawer => drawer.draw());
+        window.requestAnimationFrame(this.customLoop.bind(this));
+    }
+
+    run() {
+        this.paused = false;
+        setTimeout(() => this.scene?.run());
+        window.requestAnimationFrame(this.customLoop.bind(this));
+    }
+
+    pause() {
+        this.scene?.pause();
+        this.paused = true;
+    }
+
+    replace() {
         this.scene?.reset();
-        this.scene = null;
+        const newPintoCanvas = document.createElement("pinto-canvas");
+        this.parentElement.replaceChild(newPintoCanvas, this);
+        return newPintoCanvas;
     }
 }
 

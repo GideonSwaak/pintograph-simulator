@@ -72,3 +72,20 @@ dialog .close-button {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+dialog[is='open-workspace-dialog'] {
+    .content .workspace-list {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        .workspace {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .workspace {
+        width: 100%;
+        background: $dialog-color;
+        padding: 0.4rem;
+    }
+}

@@ -1,50 +1,51 @@
 class PenSettings extends HTMLElement {
-    penSizeEl;
-    penColorEl;
-    penShadowBlurEl;
-    penShadowColorEl;
-    penSize = 1;
-    penColor = "#000000";
-    shadowBlur = 0;
-    shadowColor = "#000000";
-
+    elements = {};
     connectedCallback() {
         this.innerHTML = `
-        <label for="pen-size">Pen size</label>
-        <input type="number" name="pen-size" class="pen-size" value="1">
-        <label for="pen-color">Pen color</label>
-        <input type="color" name="pen-color" class="pen-color" value="#000000">
-        <label for="pen-shadow-blur">Shadow blur</label>
-        <input type="number" name="pen-shadow-blur" class="pen-shadow-blur" value="0">
-        <label for="pen-shadow-color">Shadow color</label>
-        <input type="color" name="pen-shadow-color" class="pen-shadow-color" value="#000000">
+            <label for="size">Pen size</label>
+            <input type="number" name="size" class="size" value="${this.dataset.size || 1}">
+            <label for="shadow-blur">Shadow blur</label>
+            <input type="number" name="shadow-blur" class="shadow-blur" value="${this.dataset.shadowBlur || 0}">
+            <label for="rainbow-color">Rainbow</label>
+            <input type="checkbox" name="rainbow-color" class="rainbow-color" ${this.dataset.rainbowColor === "true" ? "checked" : ""}>
+            <label for="rainbow-shadow-color">Rainbow</label>
+            <input type="checkbox" name="rainbow-shadow-color" class="rainbow-shadow-color" ${this.dataset.rainbowShadowColor === "true" ? "checked" : ""}>
+            <label for="color">Pen color</label>
+            <input type="color" name="color" class="color" value="${this.dataset.color || "#000000"}">
+            <label for="shadow-color">Shadow color</label>
+            <input type="color" name="shadow-color" class="shadow-color" value="${this.dataset.shadowColor || "#000000"}">
         `;
-        this.penSizeEl = this.querySelector(".pen-size");
-        this.penColorEl = this.querySelector(".pen-color");
-        this.penShadowBlurEl = this.querySelector(".pen-shadow-blur");
-        this.penShadowColorEl = this.querySelector(".pen-shadow-color");
-        this.setupListeners();
+        this.elements = {
+            size: this.querySelector(".size"),
+            color: this.querySelector(".color"),
+            shadowBlur: this.querySelector(".shadow-blur"),
+            shadowColor: this.querySelector(".shadow-color"),
+            rainbowColor: this.querySelector(".rainbow-color"),
+            rainbowShadowColor: this.querySelector(".rainbow-shadow-color"),
+        };
     }
 
-    setupListeners() {
-        this.penSizeEl.addEventListener("input", event => {
-            this.penSize = event.target.value;
-        });
-        this.penColorEl.addEventListener("input", event => {
-            this.penColor = event.target.value;
-            if (this.penColor === "#454545") {
-                this.penColor = (t) => `hsl(${(t * 4) % 360}, 80%, 60%)`;
-            }
-        });
-        this.penShadowBlurEl.addEventListener("input", event => {
-            this.shadowBlur = event.target.value;
-        });
-        this.penShadowColorEl.addEventListener("input", event => {
-            this.shadowColor = event.target.value;
-            if (this.shadowColor === "#454545") {
-                this.shadowColor = (t) => `hsl(${(t * 4) % 360}, 80%, 60%)`;
-            }
-        });
+    getData() {
+        let size = this.elements.size.valueAsNumber;
+        let color = this.elements.color.value;
+        let shadowBlur = this.elements.shadowBlur.valueAsNumber;
+        let shadowColor = this.elements.shadowColor.value;
+        let rainbowColor = this.elements.rainbowColor.checked;
+        let rainbowShadowColor = this.elements.rainbowShadowColor.checked;
+        if (this.elements.rainbowColor.checked) {
+            color = (t) => `hsl(${(t * 4) % 360}, 80%, 60%)`;
+        }
+        if (this.elements.rainbowShadowColor.checked) {
+            shadowColor = (t) => `hsl(${(t * 4) % 360}, 80%, 60%)`;
+        }
+        return {
+            size,
+            color,
+            shadowBlur,
+            shadowColor,
+            rainbowColor,
+            rainbowShadowColor,
+        };
     }
 }
 

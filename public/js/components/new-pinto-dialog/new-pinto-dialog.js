@@ -1,7 +1,7 @@
-import { SimplePintograph } from "../../drawers/simple-pintograph.js";
-import { ProperPintograph } from "../../drawers/proper-pintograph.js";
-import { LissajousCurves } from "../../drawers/lissajous-curves.js";
-import { RotaryPintograph } from "../../drawers/rotary-pintograph.js";
+import { SimplePintograph } from "../../drawers/pintographs/simple-pintograph.js";
+import { ProperPintograph } from "../../drawers/pintographs/proper-pintograph.js";
+import { LissajousCurves } from "../../drawers/pintographs/lissajous-curves.js";
+import { RotaryPintograph } from "../../drawers/pintographs/rotary-pintograph.js";
 
 class NewPintoDialog extends HTMLDialogElement {
     sidebarElements = document.querySelector("#sidebar > .elements");
@@ -41,26 +41,30 @@ class NewPintoDialog extends HTMLDialogElement {
     showModal() {
         super.showModal();
         this.setup();
-        this.querySelector("#simple-pintograph-example").initiateScene(scene => {
+        this.querySelector("#simple-pintograph-example").setPintographScene(scene => {
             const simplePintograph = new SimplePintograph();
             simplePintograph.scale(6);
             simplePintograph.build(scene);
         });
-        this.querySelector("#proper-pintograph-example").initiateScene(scene => {
+        this.querySelector("#simple-pintograph-example").run();
+        this.querySelector("#proper-pintograph-example").setPintographScene(scene => {
             const properPintograph = new ProperPintograph();
             properPintograph.scale(6);
             properPintograph.build(scene);
         });
-        this.querySelector("#lissajous-curves-example").initiateScene(scene => {
+        this.querySelector("#proper-pintograph-example").run();
+        this.querySelector("#lissajous-curves-example").setPintographScene(scene => {
             const lissajousCurves = new LissajousCurves();
             lissajousCurves.scale(6);
             lissajousCurves.build(scene);
         });
-        this.querySelector("#rotary-pintograph-example").initiateScene(scene => {
+        this.querySelector("#lissajous-curves-example").run();
+        this.querySelector("#rotary-pintograph-example").setPintographScene(scene => {
             const rotaryPintograph = new RotaryPintograph();
             rotaryPintograph.scale(6);
             rotaryPintograph.build(scene);
         });
+        this.querySelector("#rotary-pintograph-example").run();
         this.querySelectorAll("canvas").forEach(canvas => canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height));
     }
 

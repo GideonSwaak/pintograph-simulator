@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import "./includes/mixin.scss";
 @import "./includes/variables.scss";
 @import "./includes/sidebar.scss";
 @import "./includes/dialog.scss";
-// @import "./includes/navbar.scss";
+@import "./includes/navbar.scss";
 
 body {
     margin: 0;
@@ -14,6 +15,18 @@ body {
     grid-template-rows: 2rem calc(100vh - 2rem);
     height: 100vh;
     width: 100vw;
+}
+
+@media screen and (max-width: 1536px) {
+    body {
+        grid-template-columns: 28vw 72vw;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    body {
+        grid-template-columns: 40vw 60vw;
+    }
 }
 
 nav {
