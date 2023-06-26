@@ -1,7 +1,7 @@
 class WorkspaceManager extends HTMLElement {
 
     currentId = null;
-
+    localSession = false;
     connectedCallback() {
         this.querySelector(".save-file").addEventListener("click", this.saveWorkspace.bind(this));
         this.querySelector(".open-file").addEventListener("click", this.openWorkspace.bind(this));
@@ -16,8 +16,14 @@ class WorkspaceManager extends HTMLElement {
         }
     }
 
-    openWorkspace() {
+    async openWorkspace() {
         let dialog = document.querySelector("dialog[is='open-workspace-dialog']");
+        let workspaceList;
+        if (this.localSession) {
+            workspaceList = JSON.parse(window.localStorage.getItem("workspaces"));
+        } else {
+            workspaceList = await fetch("/api/workspace").then(response => response.json()); 
+        }
         fetch("/api/workspace").then(response => response.json()).then(workspaces => {
             dialog.querySelector(".workspace-list").innerHTML = "";
             workspaces.forEach(workspace => {
@@ -46,18 +52,24 @@ class WorkspaceManager extends HTMLElement {
     createWorkspace() {
         const title = document.querySelector(".project-title").textContent.toLowerCase().replaceAll(" ", "-");
         const data = [...document.querySelectorAll("#sidebar .elements .pinto-element")].map(sp => sp.getData());
-        fetch("/api/workspace", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title,
-                data,
-            }),
-        }).then(response => response.json()).then(workspace => {
-            this.currentId = workspace._id;
-        });
+        if (this.localSession) {
+            let workspaces = JSON.parse(window.localStorage.getItem("workspaces"));
+            workspaces[title] = data;
+            window.localStorage.setItem("workspaces", JSON.stringify(workspaces));
+        } else {
+            fetch("/api/workspace", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title,
+                    data,
+                }),
+            }).then(response => response.json()).then(workspace => {
+                this.currentId = workspace._id;
+            });
+        }
     }
 
     updateWorkspace() {

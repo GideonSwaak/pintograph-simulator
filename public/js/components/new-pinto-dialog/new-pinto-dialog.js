@@ -23,9 +23,13 @@ class NewPintoDialog extends HTMLDialogElement {
         <div class="element" class="new-lissajous-curves"><pinto-canvas data-name="Lissajous" class="example" id="lissajous-curves-example" height="150" width="150"></pinto-canvas></div>
         `;
         this.simplePintographExample = this.querySelector("#simple-pintograph-example");
+        this.simplePintographExample.adaptToDevicePixelRatio = false;
         this.properPintographExample = this.querySelector("#proper-pintograph-example");
+        this.properPintographExample.adaptToDevicePixelRatio = false;
         this.lissajousCurvesExample = this.querySelector("#lissajous-curves-example");
+        this.lissajousCurvesExample.adaptToDevicePixelRatio = false;
         this.rotaryPintographExample = this.querySelector("#rotary-pintograph-example");
+        this.rotaryPintographExample.adaptToDevicePixelRatio = false;
         
         this.simplePintographExample.addEventListener("click", this.addElement.bind(this, "simple-pintograph"));
         this.properPintographExample.addEventListener("click", this.addElement.bind(this, "proper-pintograph"));

@@ -6,13 +6,60 @@ import "./drawing-forms/rotary-pintograph-element.js";
 const sidebarElements = document.querySelector("#sidebar .elements");
 const renderButton = document.querySelector("#render-button");
 const settingsButton = document.querySelector("#settings-button");
+const fullscreenButton = document.querySelector("#fullscreen-button");
 const addPintoButton = document.querySelector("#add-pintograph-button");
+const screenshotButton = document.querySelector("#screenshot-button");
 
 addPintoButton.addEventListener("click", () => document.querySelector("dialog[is='new-pinto-dialog']").showModal());
 
 settingsButton.addEventListener("click", () => document.querySelector("dialog[is='settings-dialog']").showModal());
 
 renderButton.addEventListener("click", render);
+
+fullscreenButton.addEventListener("click", requestFullscreen);
+
+function requestFullscreen() {
+    const pintoCanvas = document.querySelector("main > pinto-canvas");
+    const main = document.querySelector("main");
+    // pintoCanvas.requestFullscreen();
+    main.requestFullscreen();
+    window.addEventListener("fullscreenchange", event => {
+        window.screen.orientation.lock("landscape");
+    });
+    document.querySelector("main > pinto-canvas").addEventListener("fullscreenchange", event => {
+    
+    });
+    [...pintoCanvas.querySelectorAll("canvas")].forEach(canvas => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+screenshotButton.addEventListener("click", () => {
+    const pintoCanvas = document.querySelector("main > pinto-canvas");
+    const previewCanvas = pintoCanvas.querySelector(".preview");
+    // const toolCanvas = pintoCanvas.querySelector(".tools");
+    // const overlayCanvas = pintoCanvas.querySelector(".overlay");
+    const screenshotCanvas = document.createElement("canvas");
+    screenshotCanvas.width = previewCanvas.width;
+    screenshotCanvas.height = previewCanvas.height;
+    const screenshotContext = screenshotCanvas.getContext("2d");
+    screenshotContext.drawImage(previewCanvas, 0, 0);
+    // screenshotContext.drawImage(toolCanvas, 0, 0);
+    // screenshotContext.drawImage(overlayCanvas, 0, 0);
+    const screenshot = screenshotCanvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = screenshot;
+    link.download = "pintograph.png";
+    link.click();
+});
+
+// fullscreenButton.addEventListener("click", () => {
+//     const popup = window.open("https://pintograph.gideon.nu", "PintoGraph", "width=800,height=600");
+//     popup.addEventListener("load", () => {
+//         popup.document.querySelector("body").innerHTML = "Poep";
+//     });
+// });
 
 window.addEventListener("keydown", event => {
     if (event.key == "Enter" || (event.ctrlKey && event.key == "s")) {
@@ -26,6 +73,9 @@ function render() {
     const pintographs = parsePintographElements();
     pintoCanvas.setPintographScene(scene => pintographs.forEach(sp => sp.build(scene)));
     pintoCanvas.run();
+    if (window.innerWidth < 800) {
+        requestFullscreen();
+    }
 }
 
 function parsePintographElements() {

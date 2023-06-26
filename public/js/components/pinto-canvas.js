@@ -6,9 +6,14 @@ class PintoCanvas extends HTMLElement {
     scene;
     customDrawers = [];
     paused = true;
+    adaptToDevicePixelRatio = true;
     connectedCallback() {
         let height = this.getAttribute("height") || 0.9 * this.clientHeight;
         let width = this.getAttribute("width") || 0.9 * this.clientWidth;
+        if (this.adaptToDevicePixelRatio) {
+            height *= window.devicePixelRatio;
+            width *= window.devicePixelRatio;
+        }
         this.innerHTML = `
         <canvas id="pinto-canvas" height="${height}" width="${width}" class="preview"></canvas>
         <canvas id="pinto-canvas" height="${height}" width="${width}" class="tools"></canvas>
@@ -27,12 +32,18 @@ class PintoCanvas extends HTMLElement {
         window.addEventListener("resize", () => {
             let height = 0.9 * this.clientHeight;
             let width =  0.9 * this.clientWidth;
+            if (this.adaptToDevicePixelRatio) {
+                height *= window.devicePixelRatio;
+                width *= window.devicePixelRatio;
+            }
             this.querySelectorAll("canvas").forEach(canvas => {
                 canvas.height = height;
                 canvas.width = width;
             });
         });
     }
+
+    
 
     setPintographScene(func) {
         const scene = new Scene(this.previewCanvas.getContext("2d"), this.toolCanvas.getContext("2d"));

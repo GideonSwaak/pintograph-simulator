@@ -1,7 +1,6 @@
 class PenSettings extends HTMLElement {
     elements = {};
     connectedCallback() {
-        console.log(this.dataset.toolColor);
         this.innerHTML = `
             <label for="size">Pen size</label>
             <input type="number" name="size" class="size" value="${this.dataset.size || 1}">
