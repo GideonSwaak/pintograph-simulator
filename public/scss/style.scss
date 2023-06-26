@@ -29,6 +29,23 @@ body {
     }
 }
 
+@media screen and (max-width: 768px) {
+    body {
+        grid-template-columns: 100vw;
+        grid-template-rows: 2rem calc(100vh - 2rem);
+    }
+    body > main {
+        display: none;
+    }
+    body > main:fullscreen {
+        display: block;
+        > canvas {
+            width: 100vw;
+            height: 100vh;
+        }
+    }
+}
+
 nav {
     grid-column: span 2;
     background: $menu-color;

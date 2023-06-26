@@ -1,7 +1,7 @@
 class AccountStatus extends HTMLElement {
 
     status;
-
+    localhost = false;
     connectedCallback() {
         this.status = window.localStorage.getItem("username");
         this.refreshStatus();
@@ -19,10 +19,16 @@ class AccountStatus extends HTMLElement {
     render() {
         if (this.status.username) {
             this.innerHTML = `Logged in as ${this.status.username} <a href="https://login.gideon.nu/logout?redirect=https://pintograph.gideon.nu" class="logout">Logout</a>`;
-        } else {
+        } else if (!this.localhost) {
             this.innerHTML = `
-            <a href="https://login.gideon.nu?redirect=https://pintograph.gideon.nu" class="login">Login</a>
+            <a href="https://login.gideon.nu?redirect=https://pintograph.gideon.nu" class="login">Login</a> <button class="localsession-button">Localsession mode</button>
             `;
+            this.querySelector(".localsession-button").addEventListener("click", () => {
+                this.localhost = true;
+                this.render();
+            })
+        } else {
+            this.innerHTML = "<span>This is a local session, your data will be saved locally.</span>";
         }
     }
 

@@ -5,7 +5,7 @@ const router = express.Router();
 router.use(express.json());
 
 router.get("/", (req, res) => {
-    Workspace.find({owner: req.session.userId}).sort(['updatedAt', 1]).then(workspaces => {
+    Workspace.find({owner: req.session.userId}).sort([['updatedAt', 1]]).then(workspaces => {
         res.status(200).json(workspaces);
     });
 })
