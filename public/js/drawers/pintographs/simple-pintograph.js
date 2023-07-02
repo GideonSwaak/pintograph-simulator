@@ -1,4 +1,4 @@
-import * as Pintograph from "../../libraries/pintograph.js";
+import * as Pintograph from "/pintograph/dist/pintograph.js";
 
 export const defaults = () => ({
     mountPoint1: { x: 200, y: 450 },
@@ -38,7 +38,7 @@ export class SimplePintograph {
     build(scene) {
         let mountPoint1 = new Pintograph.StaticMountPoint(this.mountPoint1);
         let mountPoint2 = new Pintograph.StaticMountPoint(this.mountPoint2);
-        let wheel1 = new Pintograph.Wheel(mountPoint1, this.wheel1.radius, this.wheel1.startAngle, this.wheel1.speed, this.penSettings.toolColor);
+        let wheel1 = new Pintograph.Wheel(mountPoint1, this.wheel1.radius, this.wheel1.startAngle, this.wheel1.speed, this.penSettings.toolColor, s => s * 4);
         let wheel2 = new Pintograph.Wheel(mountPoint2, this.wheel2.radius, this.wheel2.startAngle, this.wheel2.speed, this.penSettings.toolColor);
         
         let arm = new Pintograph.VArm({
@@ -62,4 +62,5 @@ export class SimplePintograph {
         scene.objects.push(arm);
         scene.pens.push(pen);
     }
+
 }
