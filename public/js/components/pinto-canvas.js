@@ -1,4 +1,4 @@
-import { Scene } from "/pintograph/dist/pintograph.js";
+import { Scene } from "../../pintograph/dist/pintograph.js";
 
 class PintoCanvas extends HTMLElement {
     previewCanvas;

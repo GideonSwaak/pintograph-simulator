@@ -1,4 +1,4 @@
-import * as Pintograph from "/pintograph/dist/pintograph.js";
+import * as Pintograph from "../../../pintograph/dist/pintograph.js";
 
 export const defaults = () => ({
     mountPoint: { x: 400, y: 300 },
