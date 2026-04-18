@@ -2,7 +2,8 @@ import { runServer } from "./express-server.js";
 import workspaceRouter from "./routers/workspace-router.js";
 import { initSessionManager } from "../libraries/user_management/session_manager.js";
 import mongoose from "mongoose";
-const port = process.argv[2];
+// const port = process.argv[2];
+const port = 40014;
 const app = runServer(port, import.meta.url);
 
 initSessionManager(app);

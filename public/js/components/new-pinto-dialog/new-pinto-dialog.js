@@ -45,31 +45,30 @@ class NewPintoDialog extends HTMLDialogElement {
     showModal() {
         super.showModal();
         this.setup();
-        this.querySelector("#simple-pintograph-example").setPintographScene(scene => {
+        this.querySelector("#simple-pintograph-example").setPintographScene((scene, renderer) => {
             const simplePintograph = new SimplePintograph();
             simplePintograph.scale(6);
-            simplePintograph.build(scene);
+            simplePintograph.build(scene, renderer);
         });
         this.querySelector("#simple-pintograph-example").run();
-        this.querySelector("#proper-pintograph-example").setPintographScene(scene => {
+        this.querySelector("#proper-pintograph-example").setPintographScene((scene, renderer) => {
             const properPintograph = new ProperPintograph();
             properPintograph.scale(6);
-            properPintograph.build(scene);
+            properPintograph.build(scene, renderer);
         });
         this.querySelector("#proper-pintograph-example").run();
-        this.querySelector("#lissajous-curves-example").setPintographScene(scene => {
+        this.querySelector("#lissajous-curves-example").setPintographScene((scene, renderer) => {
             const lissajousCurves = new LissajousCurves();
             lissajousCurves.scale(6);
-            lissajousCurves.build(scene);
+            lissajousCurves.build(scene, renderer);
         });
         this.querySelector("#lissajous-curves-example").run();
-        this.querySelector("#rotary-pintograph-example").setPintographScene(scene => {
+        this.querySelector("#rotary-pintograph-example").setPintographScene((scene, renderer) => {
             const rotaryPintograph = new RotaryPintograph();
             rotaryPintograph.scale(6);
-            rotaryPintograph.build(scene);
+            rotaryPintograph.build(scene, renderer);
         });
         this.querySelector("#rotary-pintograph-example").run();
-        this.querySelectorAll("canvas").forEach(canvas => canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height));
     }
 
     close() {

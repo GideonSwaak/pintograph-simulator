@@ -9,6 +9,23 @@ const settingsButton = document.querySelector("#settings-button");
 const fullscreenButton = document.querySelector("#fullscreen-button");
 const addPintoButton = document.querySelector("#add-pintograph-button");
 const screenshotButton = document.querySelector("#screenshot-button");
+const speedInput = document.querySelector("#speed-input");
+
+function applySpeed() {
+    const v = parseFloat(speedInput.value);
+    if (!Number.isFinite(v) || v <= 0) return;
+    document.querySelector("main pinto-canvas")?.setSpeed?.(v);
+}
+
+function applyHideTools() {
+    const hide = document.querySelector("input[name='hide-tools']")?.checked ?? false;
+    document.querySelector("main").classList.toggle("hide-tools", hide);
+    document.querySelector("main pinto-canvas")?.setDebugEnabled?.(!hide);
+}
+
+speedInput.addEventListener("input", applySpeed);
+speedInput.addEventListener("change", applySpeed);
+window.addEventListener("settings:hide-tools-changed", applyHideTools);
 
 addPintoButton.addEventListener("click", () => document.querySelector("dialog[is='new-pinto-dialog']").showModal());
 
@@ -38,15 +55,17 @@ function requestFullscreen() {
 screenshotButton.addEventListener("click", () => {
     const pintoCanvas = document.querySelector("main > pinto-canvas");
     const previewCanvas = pintoCanvas.querySelector(".preview");
-    // const toolCanvas = pintoCanvas.querySelector(".tools");
-    // const overlayCanvas = pintoCanvas.querySelector(".overlay");
     const screenshotCanvas = document.createElement("canvas");
     screenshotCanvas.width = previewCanvas.width;
     screenshotCanvas.height = previewCanvas.height;
     const screenshotContext = screenshotCanvas.getContext("2d");
+    // The WebGL preview canvas is cleared to transparent and shows the user's
+    // background color via CSS; bake that color into the screenshot so the PNG
+    // matches what's on screen.
+    const bg = document.querySelector("input[name='canvas-color']").value || "#FFFFFF";
+    screenshotContext.fillStyle = bg;
+    screenshotContext.fillRect(0, 0, screenshotCanvas.width, screenshotCanvas.height);
     screenshotContext.drawImage(previewCanvas, 0, 0);
-    // screenshotContext.drawImage(toolCanvas, 0, 0);
-    // screenshotContext.drawImage(overlayCanvas, 0, 0);
     const screenshot = screenshotCanvas.toDataURL("image/png");
     const link = document.createElement("a");
     link.href = screenshot;
@@ -71,8 +90,10 @@ window.addEventListener("keydown", event => {
 function render() {
     const pintoCanvas = document.querySelector("main pinto-canvas").replace();
     const pintographs = parsePintographElements();
-    pintoCanvas.setPintographScene(scene => pintographs.forEach(sp => sp.build(scene)));
+    pintoCanvas.setPintographScene((scene, renderer) => pintographs.forEach(sp => sp.build(scene, renderer)));
     pintoCanvas.run();
+    applySpeed();
+    applyHideTools();
     if (window.innerWidth < 800) {
         requestFullscreen();
     }

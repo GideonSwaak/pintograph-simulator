@@ -1,4 +1,4 @@
-import * as Pintograph from "../../../pintograph/dist/pintograph.js";
+import * as Pintograph from "../../../pintograph/dist/index.js";
 
 export const defaults = () => ({
     mountPoint1: { x: 250, y: 500 },
@@ -45,14 +45,14 @@ export class ProperPintograph {
         this.vArm.length2 /= scaling;
     }
 
-    build(scene) {
+    build(scene, renderer) {
         let mountPoint1 = new Pintograph.StaticMountPoint(this.mountPoint1);
         let mountPoint2 = new Pintograph.StaticMountPoint(this.mountPoint2);
         let wheel1 = new Pintograph.Wheel(mountPoint1, this.wheel1.radius, this.wheel1.startAngle, this.wheel1.speed, this.penSettings.toolColor);
         let wheel2 = new Pintograph.Wheel(mountPoint2, this.wheel2.radius, this.wheel2.startAngle, this.wheel2.speed, this.penSettings.toolColor);
         let subwheel1 = new Pintograph.Wheel(wheel1.mountPoint, this.subwheel1.radius, this.subwheel1.startAngle, this.subwheel1.speed, this.penSettings.toolColor);
         let subwheel2 = new Pintograph.Wheel(wheel2.mountPoint, this.subwheel2.radius, this.subwheel2.startAngle, this.subwheel2.speed, this.penSettings.toolColor);
-        
+
         let xArm = new Pintograph.XArm({
             mountedAt1: subwheel1.mountPoint,
             mountedAt2: subwheel2.mountPoint,
@@ -64,21 +64,9 @@ export class ProperPintograph {
             mountedAt2: xArm.mountPoint2,
             ...this.vArm
         }, this.penSettings.toolColor);
-        
-        let pen = new Pintograph.Pen(arm.mountPoint, this.penSettings.color, {
-            lineWidth: this.penSettings.size,
-            shadowBlur: this.penSettings.shadowBlur,
-            shadowColor: this.penSettings.shadowColor
-        });
-        
-        scene.objects.push(mountPoint1);
-        scene.objects.push(mountPoint2);
-        scene.objects.push(wheel1);
-        scene.objects.push(subwheel1);
-        scene.objects.push(wheel2);
-        scene.objects.push(subwheel2);
-        scene.objects.push(xArm);
-        scene.objects.push(arm);
-        scene.pens.push(pen);
+
+        let pen = new Pintograph.WebGLPen(arm.mountPoint, renderer, this.penSettings.color, this.penSettings.size);
+
+        scene.registerPen(pen);
     }
 }

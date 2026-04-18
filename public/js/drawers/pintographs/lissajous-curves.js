@@ -1,4 +1,4 @@
-import * as Pintograph from "../../../pintograph/dist/pintograph.js";
+import * as Pintograph from "../../../pintograph/dist/index.js";
 
 export const defaults = () => ({
     mountPoint: { x: 400, y: 300 },
@@ -23,19 +23,12 @@ export class LissajousCurves {
         this.vOscillator.length /= scaling;
     }
 
-    build(scene) {
+    build(scene, renderer) {
         let mountPoint = new Pintograph.StaticMountPoint(this.mountPoint);
         let hOscillator = new Pintograph.Oscillator(mountPoint, this.hOscillator.length, this.hOscillator.angle, this.hOscillator.speed, this.penSettings.toolColor);
         let vOscillator = new Pintograph.Oscillator(hOscillator.mountPoint, this.vOscillator.length, this.vOscillator.angle, this.vOscillator.speed, this.penSettings.toolColor);
-        let pen = new Pintograph.Pen(vOscillator.mountPoint, this.penSettings.color, {
-            lineWidth: this.penSettings.size,
-            shadowBlur: this.penSettings.shadowBlur,
-            shadowColor: this.penSettings.shadowColor
-        });
+        let pen = new Pintograph.WebGLPen(vOscillator.mountPoint, renderer, this.penSettings.color, this.penSettings.size);
 
-        scene.objects.push(mountPoint);
-        scene.objects.push(hOscillator);
-        scene.objects.push(vOscillator);
-        scene.pens.push(pen);
+        scene.registerPen(pen);
     }
 }

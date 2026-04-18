@@ -1,3 +1,4 @@
 [submodule "public/pintograph"]
 	path = public/pintograph
 	url = https://github.com/GideonSwaak/pintograph
+	branch = master

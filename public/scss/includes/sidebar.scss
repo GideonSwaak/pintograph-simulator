@@ -154,7 +154,30 @@ button.delete {
 
 #action-buttons {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
     justify-content: space-between;
+}
+
+#speed-control {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.4rem;
+    background: $dialog-color;
+
+    > label {
+        font-weight: bold;
+    }
+
+    > input[type="number"] {
+        width: 4rem;
+        padding: 0.2rem 0.3rem;
+        font-variant-numeric: tabular-nums;
+    }
 }
 
 @import "./input-elements/input-elements";

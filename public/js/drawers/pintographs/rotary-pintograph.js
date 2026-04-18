@@ -1,4 +1,4 @@
-import * as Pintograph from '../../../pintograph/dist/pintograph.js';
+import * as Pintograph from "../../../pintograph/dist/index.js";
 
 export const defaults = () => ({
     mountPoint: { x: 250, y: 250 },
@@ -37,13 +37,13 @@ export class RotaryPintograph {
         this.armLength2 /= scaling;
     }
 
-    build(scene) {
+    build(scene, renderer) {
         let center = new Pintograph.StaticMountPoint(this.mountPoint);
         let baseWheel1 = new Pintograph.Wheel(center, this.baseWheel1.radius, this.baseWheel1.startAngle, this.baseWheel1.speed, this.penSettings.toolColor);
         let baseWheel2 = new Pintograph.Wheel(center, this.baseWheel2.radius, this.baseWheel2.startAngle, this.baseWheel2.speed, this.penSettings.toolColor);
         let wheel1 = new Pintograph.Wheel(baseWheel1.mountPoint, this.wheel1.radius, this.wheel1.startAngle, this.wheel1.speed, this.penSettings.toolColor);
         let wheel2 = new Pintograph.Wheel(baseWheel2.mountPoint, this.wheel2.radius, this.wheel2.startAngle, this.wheel2.speed, this.penSettings.toolColor);
-    
+
         let arm = new Pintograph.VArm({
             mountedAt1: wheel1.mountPoint,
             mountedAt2: wheel2.mountPoint,
@@ -51,19 +51,9 @@ export class RotaryPintograph {
             length2: this.armLength2,
             flip: this.flip
         }, this.penSettings.toolColor);
-    
-        let pen = new Pintograph.Pen(arm.mountPoint, this.penSettings.color, {
-            lineWidth: this.penSettings.size,
-            shadowBlur: this.penSettings.shadowBlur,
-            shadowColor: this.penSettings.shadowColor
-        });
-        
-        scene.objects.push(center);
-        scene.objects.push(baseWheel1);
-        scene.objects.push(baseWheel2);
-        scene.objects.push(wheel1);
-        scene.objects.push(wheel2);
-        scene.objects.push(arm);
-        scene.pens.push(pen);
+
+        let pen = new Pintograph.WebGLPen(arm.mountPoint, renderer, this.penSettings.color, this.penSettings.size);
+
+        scene.registerPen(pen);
     }
 }

@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": ">=25"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "node build.js",
+    "start": "node index.js",
     "postinstall": "cd public/pintograph && npm install && npm run build"
   },
   "keywords": [],
@@ -15,7 +19,6 @@
   "dependencies": {
     "express": "^4.18.2",
     "mongoose": "^7.0.3",
-    "node-sass": "^9.0.0",
     "sass": "^1.63.6"
   }
 }
